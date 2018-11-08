@@ -1,0 +1,13 @@
+language: java
+jdk: openjdk11
+
+branches:
+  only:
+    - master
+
+install: mvn package
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
