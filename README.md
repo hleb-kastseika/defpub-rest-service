@@ -12,4 +12,4 @@
 
 `mvn spring-boot:run`
 
-## Swagger page: http://localhost:8080/api/swagger-ui.html
+Swagger page: http://localhost:8080/api/swagger-ui.html
