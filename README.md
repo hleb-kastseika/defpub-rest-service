@@ -3,13 +3,17 @@
 
 # DefPub REST Service
 
-mvn clean package
+## Requirements:
+- Java 11 or higher
+- Maven 3.3 or higher
 
-mvn spring-boot:run
+## How to build and to run:
+`mvn clean package`
 
-***
+`mvn spring-boot:run`
 
-POST http://localhost:8080/api/auth/signup
+## REST API methods:
+`POST http://localhost:8080/api/auth/signup
 {
   "username": "{username}",
   "password": "{password}"
@@ -53,3 +57,4 @@ authorization: Bearer {JWT}
 
 DELETE http://localhost:8080/api/users/{id}
 authorization: Bearer {JWT}
+`
