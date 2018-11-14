@@ -6,6 +6,7 @@ import gk.defpub.restservice.model.User;
 import gk.defpub.restservice.security.TokenProvider;
 import gk.defpub.restservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 /**
  * AuthenticationController class.
@@ -37,9 +40,8 @@ public class AuthenticationController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/signin", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody LoginUser loginUser) throws AuthenticationException {
-
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginUser.getUsername(),
@@ -51,15 +53,13 @@ public class AuthenticationController {
         return ResponseEntity.ok(new AuthToken(token));
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public LoginUser register(@RequestBody LoginUser user) {
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity<Void> register(@Valid @RequestBody LoginUser user) {
         User newUser = userService.save(user);
         if(newUser != null) {
-            user.setPassword("");
-            return user;
+            return new ResponseEntity<>(HttpStatus.OK);
         }
-        //TODO add error response
-        return null;
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
 }

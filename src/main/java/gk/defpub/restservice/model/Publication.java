@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * Publication class.
@@ -27,6 +29,8 @@ public class Publication {
     @JsonIgnore
     private String userId;
     @Column
+    @NotBlank
+    @Size (min = 1, max = 280)
     private String message;
 
     public String getId() {
