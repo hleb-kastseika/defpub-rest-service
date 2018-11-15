@@ -1,11 +1,9 @@
 package gk.defpub.restservice.controller;
 
 import gk.defpub.restservice.model.Publication;
-import gk.defpub.restservice.model.Role;
-import gk.defpub.restservice.model.User;
 import gk.defpub.restservice.service.PublicationService;
 import gk.defpub.restservice.service.UserService;
-import gk.defpub.restservice.validation.UserPermissionException;
+import gk.defpub.restservice.validation.ConditionsValid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -20,7 +18,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.security.Principal;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
  * PublicationController class.
@@ -52,19 +49,19 @@ public class PublicationController {
         return publicationService.findAllForUser(userService.findOne(principal.getName()).getId());
     }
 
+    @ConditionsValid
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Publication getPublication(@PathVariable(value = "id") String id,
                                       Principal principal) {
-        validateRequest(principal, id);
         return publicationService.findById(id);
     }
 
+    @ConditionsValid
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deletePublication(@PathVariable(value = "id") String id,
                                   Principal principal) {
-        validateRequest(principal, id);
         publicationService.delete(id);
     }
 
@@ -76,26 +73,14 @@ public class PublicationController {
         return publicationService.save(publication);
     }
 
+    @ConditionsValid
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Publication updatePublication(@NotBlank @PathVariable(value = "id") String id,
-                                         @Valid @RequestBody Publication publication,
-                                         Principal principal) {
-        validateRequest(principal, id);
+                                         Principal principal,
+                                         @Valid @RequestBody Publication publication) {
         Publication oldPublication = publicationService.findById(id);
         oldPublication.setMessage(publication.getMessage());
         return publicationService.save(oldPublication);
-    }
-
-    private void validateRequest(Principal principal, String publicationId) {
-        User currentUser = userService.findOne(principal.getName());
-        Publication currentPublication = publicationService.findById(publicationId);
-        if (currentPublication == null) {
-            throw new NoSuchElementException("{\"error\":\"There is no publication with such ID.\"}");
-        }
-        if (currentUser.getRole() == Role.ADMIN || currentPublication.getUserId().equals(currentUser.getId())) {
-            throw new UserPermissionException();
-        }
-        ;
     }
 }
