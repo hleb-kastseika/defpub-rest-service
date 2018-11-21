@@ -6,7 +6,6 @@ import gk.defpub.restservice.service.PublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,9 +28,7 @@ public class PublicationServiceImpl implements PublicationService {
 
     @Override
     public List<Publication> findAll() {
-        List<Publication> list = new ArrayList<>();
-        publicationRepository.findAll().forEach(list::add);
-        return list;
+        return (List) publicationRepository.findAll();
     }
 
     @Override
