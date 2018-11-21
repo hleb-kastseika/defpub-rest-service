@@ -74,24 +74,17 @@ public class TokenProvider implements Serializable {
 
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
-        return (
-              username.equals(userDetails.getUsername())
-                    && !isTokenExpired(token));
+        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
 
     UsernamePasswordAuthenticationToken getAuthentication(final String token, final Authentication existingAuth, final UserDetails userDetails) {
-
         final JwtParser jwtParser = Jwts.parser().setSigningKey(SIGNING_KEY);
-
         final Jws<Claims> claimsJws = jwtParser.parseClaimsJws(token);
-
         final Claims claims = claimsJws.getBody();
-
         final Collection<? extends GrantedAuthority> authorities =
                 Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
                         .map(SimpleGrantedAuthority::new)
                         .collect(Collectors.toList());
-
         return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);
     }
 }
