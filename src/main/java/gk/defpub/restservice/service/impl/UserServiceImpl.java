@@ -1,5 +1,6 @@
 package gk.defpub.restservice.service.impl;
 
+import com.google.common.collect.Sets;
 import gk.defpub.restservice.model.LoginUser;
 import gk.defpub.restservice.model.Role;
 import gk.defpub.restservice.repository.UserRepository;
@@ -13,8 +14,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -42,16 +41,12 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     private Set<SimpleGrantedAuthority> getAuthority(User user) {
-        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
-        return authorities;
+        return Sets.newHashSet(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
     }
 
     @Override
     public List<User> findAll() {
-        List<User> list = new ArrayList<>();
-        userRepository.findAll().forEach(list::add);
-        return list;
+        return (List) userRepository.findAll();
     }
 
     @Override
