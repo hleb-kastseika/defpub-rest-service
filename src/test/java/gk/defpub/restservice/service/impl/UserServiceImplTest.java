@@ -3,6 +3,8 @@ package gk.defpub.restservice.service.impl;
 import gk.defpub.restservice.model.LoginUser;
 import gk.defpub.restservice.model.Role;
 import gk.defpub.restservice.model.User;
+import gk.defpub.restservice.model.UserConfig;
+import gk.defpub.restservice.repository.UserConfigRepository;
 import gk.defpub.restservice.repository.UserRepository;
 import gk.defpub.restservice.service.UserService;
 import org.assertj.core.api.Assertions;
@@ -49,7 +51,6 @@ public class UserServiceImplTest {
         public PasswordEncoder getEncoder() {
             return new BCryptPasswordEncoder();
         }
-
         @Bean
         public UserService getUserService() {
             return new UserServiceImpl();
@@ -58,9 +59,10 @@ public class UserServiceImplTest {
 
     @Autowired
     private UserService userService;
-
     @MockBean
     private UserRepository userRepository;
+    @MockBean
+    private UserConfigRepository userConfigRepository;
 
     @Before
     public void setUp() {
@@ -92,7 +94,8 @@ public class UserServiceImplTest {
         assertThat(savedUser.getUsername()).isEqualTo(TEST_USERNAME_2);
         assertThat(savedUser.getRole()).isEqualTo(Role.USER);
         verify(userRepository).save(any(User.class));
-        verifyNoMoreInteractions(userRepository);
+        verify(userConfigRepository).save(any(UserConfig.class));
+        verifyNoMoreInteractions(userRepository, userConfigRepository);
     }
 
     @Test

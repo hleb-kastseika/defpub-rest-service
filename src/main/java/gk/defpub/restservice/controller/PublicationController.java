@@ -3,7 +3,7 @@ package gk.defpub.restservice.controller;
 import gk.defpub.restservice.model.Publication;
 import gk.defpub.restservice.service.PublicationService;
 import gk.defpub.restservice.service.UserService;
-import gk.defpub.restservice.validation.ConditionsValid;
+import gk.defpub.restservice.validation.PublicationValid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -49,7 +49,7 @@ public class PublicationController {
         return publicationService.findAllForUser(userService.findOne(principal.getName()).getId());
     }
 
-    @ConditionsValid
+    @PublicationValid
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Publication getPublication(@PathVariable(value = "id") String id,
@@ -57,7 +57,7 @@ public class PublicationController {
         return publicationService.findById(id);
     }
 
-    @ConditionsValid
+    @PublicationValid
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deletePublication(@PathVariable(value = "id") String id,
@@ -73,7 +73,7 @@ public class PublicationController {
         return publicationService.save(publication);
     }
 
-    @ConditionsValid
+    @PublicationValid
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Publication updatePublication(@NotBlank @PathVariable(value = "id") String id,

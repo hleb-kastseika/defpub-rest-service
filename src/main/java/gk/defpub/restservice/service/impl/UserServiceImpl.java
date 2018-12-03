@@ -3,6 +3,8 @@ package gk.defpub.restservice.service.impl;
 import com.google.common.collect.Sets;
 import gk.defpub.restservice.model.LoginUser;
 import gk.defpub.restservice.model.Role;
+import gk.defpub.restservice.model.UserConfig;
+import gk.defpub.restservice.repository.UserConfigRepository;
 import gk.defpub.restservice.repository.UserRepository;
 import gk.defpub.restservice.model.User;
 import gk.defpub.restservice.service.UserService;
@@ -17,6 +19,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Set;
 
+import static gk.defpub.restservice.util.Constants.DEFAULT_CRON_SCHEDULE;
+
 /**
  * UserServiceImpl class.
  * <p>
@@ -29,6 +33,8 @@ import java.util.Set;
 public class UserServiceImpl implements UserDetailsService, UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserConfigRepository userConfigRepository;
     @Autowired
     private BCryptPasswordEncoder bcryptEncoder;
 
@@ -70,6 +76,12 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         newUser.setUsername(user.getUsername());
         newUser.setEncryptedPassword(bcryptEncoder.encode(user.getPassword()));
         newUser.setRole(Role.USER);
-        return userRepository.save(newUser);
+        newUser = userRepository.save(newUser);
+
+        UserConfig userConfig = new UserConfig();
+        userConfig.setUserId(newUser.getId());
+        userConfig.setCronSchedule(DEFAULT_CRON_SCHEDULE);
+        userConfigRepository.save(userConfig);
+        return newUser;
     }
 }
