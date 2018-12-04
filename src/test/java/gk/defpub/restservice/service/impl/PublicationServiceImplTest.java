@@ -6,10 +6,8 @@ import gk.defpub.restservice.service.PublicationService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -23,6 +21,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 /**
  * PublicationServiceImplTest class.
@@ -39,22 +38,15 @@ public class PublicationServiceImplTest {
     private static final String TEST_MESSAGE = "test publication";
     private Publication publication;
 
-    @TestConfiguration
-    static class PublicationServiceTestConfiguration {
-        @Bean
-        public PublicationService getPublicationService() {
-            return new PublicationServiceImpl();
-        }
-    }
-
-    @Autowired
-    private PublicationService publicationService;
-
-    @MockBean
+    @Mock
     private PublicationRepository publicationRepository;
+
+    @InjectMocks
+    private PublicationService publicationService = new PublicationServiceImpl();
 
     @Before
     public void setUp() {
+        initMocks(this);
         publication = new Publication();
         publication.setId(TEST_PUBLICATION_ID);
         publication.setMessage(TEST_MESSAGE);
