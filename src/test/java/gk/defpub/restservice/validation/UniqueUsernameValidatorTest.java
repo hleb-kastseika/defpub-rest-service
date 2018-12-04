@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,7 +28,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class UniqueUsernameValidatorTest {
     private static final String TEST_USERNAME = "testUser";
     private User user = new User();
-    @MockBean
+    @Mock
     private UserService userService;
     @InjectMocks
     private UniqueUsernameValidator validator = new UniqueUsernameValidator();
