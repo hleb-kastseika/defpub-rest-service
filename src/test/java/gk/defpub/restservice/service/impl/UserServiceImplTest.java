@@ -11,12 +11,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -25,9 +22,11 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 /**
  * UserServiceImplTest class.
@@ -45,27 +44,18 @@ public class UserServiceImplTest {
     private static final String TEST_PASSWORD = "test password";
     private User user;
 
-    @TestConfiguration
-    static class UserServiceTestConfiguration {
-        @Bean
-        public PasswordEncoder getEncoder() {
-            return new BCryptPasswordEncoder();
-        }
-        @Bean
-        public UserService getUserService() {
-            return new UserServiceImpl();
-        }
-    }
-
-    @Autowired
-    private UserService userService;
-    @MockBean
+    @Mock
+    private BCryptPasswordEncoder bcryptEncoder;
+    @Mock
     private UserRepository userRepository;
-    @MockBean
+    @Mock
     private UserConfigRepository userConfigRepository;
+    @InjectMocks
+    private UserService userService = new UserServiceImpl();
 
     @Before
     public void setUp() {
+        initMocks(this);
         user = new User();
         user.setUsername(TEST_USERNAME);
     }
@@ -89,6 +79,7 @@ public class UserServiceImplTest {
         user2.setUsername(TEST_USERNAME_2);
         user2.setRole(Role.USER);
         when(userRepository.save(any(User.class))).thenReturn(user2);
+        when(bcryptEncoder.encode(eq(TEST_PASSWORD))).thenCallRealMethod();
 
         User savedUser = userService.save(loginUser);
         assertThat(savedUser.getUsername()).isEqualTo(TEST_USERNAME_2);
