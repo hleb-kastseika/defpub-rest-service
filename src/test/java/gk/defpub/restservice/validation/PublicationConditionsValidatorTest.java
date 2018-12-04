@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.security.Principal;
@@ -39,9 +39,9 @@ public class PublicationConditionsValidatorTest {
     private Publication publication = new Publication();
     private User user = new User();
     private User user2 = new User();
-    @MockBean
+    @Mock
     private UserService userService;
-    @MockBean
+    @Mock
     private PublicationService publicationService;
     @InjectMocks
     private PublicationConditionsValidator validator = new PublicationConditionsValidator();
@@ -55,7 +55,6 @@ public class PublicationConditionsValidatorTest {
         user.setUsername(TEST_USER_NAME);
         user2.setId(TEST_ANOTHER_USER_ID);
         user2.setUsername(TEST_ANOTHER_USER_NAME);
-
     }
 
     @Test
