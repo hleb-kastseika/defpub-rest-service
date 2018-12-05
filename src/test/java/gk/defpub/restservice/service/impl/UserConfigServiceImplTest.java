@@ -5,10 +5,8 @@ import gk.defpub.restservice.repository.UserConfigRepository;
 import gk.defpub.restservice.service.UserConfigService;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +28,6 @@ import static org.mockito.MockitoAnnotations.initMocks;
  *
  * @author Gleb Kosteiko
  */
-@RunWith(SpringRunner.class)
 public class UserConfigServiceImplTest {
     private static final String TEST_USER_ID = "testUserId";
     private static final String TEST_CONFIG_ID = "testConfigId";

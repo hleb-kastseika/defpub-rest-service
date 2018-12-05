@@ -7,7 +7,6 @@ import gk.defpub.restservice.security.TokenProvider;
 import gk.defpub.restservice.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -33,7 +31,6 @@ import static org.mockito.MockitoAnnotations.initMocks;
  *
  * @author Gleb Kosteiko
  */
-@RunWith(SpringRunner.class)
 public class AuthenticationControllerTest {
     private static final String TOKEN = "testToken";
     private static final String USERNAME = "testusername";

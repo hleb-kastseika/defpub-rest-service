@@ -6,10 +6,8 @@ import gk.defpub.restservice.service.UserConfigService;
 import gk.defpub.restservice.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.security.Principal;
 import java.util.NoSuchElementException;
@@ -30,7 +28,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Gleb Kosteiko
  */
-@RunWith(SpringRunner.class)
 public class UserConfigConditionsValidatorTest {
     private static final String TEST_CONFIG_ID = "testConfigId";
     private static final String TEST_USER_NAME = "testUserName";

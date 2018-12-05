@@ -6,12 +6,10 @@ import gk.defpub.restservice.service.UserConfigService;
 import gk.defpub.restservice.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -34,7 +32,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Gleb Kosteiko
  */
-@RunWith(SpringRunner.class)
 public class UserConfigControllerTest {
     private static final String TEST_USER_ID = "testUserId";
     private static final String TEST_CONFIG_ID = "testConfigId";

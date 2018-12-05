@@ -1,10 +1,8 @@
 package gk.defpub.restservice.validation;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.NoSuchElementException;
 
@@ -18,7 +16,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Gleb Kosteiko
  */
-@RunWith(SpringRunner.class)
 public class CustomExceptionHandlerTest {
     private CustomExceptionHandler handler = new CustomExceptionHandler();
 

@@ -10,11 +10,9 @@ import gk.defpub.restservice.service.UserService;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +34,6 @@ import static org.mockito.MockitoAnnotations.initMocks;
  *
  * @author Gleb Kosteiko
  */
-@RunWith(SpringRunner.class)
 public class UserServiceImplTest {
     private static final String TEST_USER_ID = "testId";
     private static final String TEST_USERNAME = "testUser";

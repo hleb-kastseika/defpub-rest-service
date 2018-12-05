@@ -4,10 +4,8 @@ import gk.defpub.restservice.model.User;
 import gk.defpub.restservice.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
@@ -24,7 +22,6 @@ import static org.mockito.MockitoAnnotations.initMocks;
  *
  * @author Gleb Kosteiko
  */
-@RunWith(SpringRunner.class)
 public class UniqueUsernameValidatorTest {
     private static final String TEST_USERNAME = "testUser";
     private User user = new User();

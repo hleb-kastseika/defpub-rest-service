@@ -2,11 +2,9 @@ package gk.defpub.restservice.security;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +25,6 @@ import static org.mockito.MockitoAnnotations.initMocks;
  *
  * @author Gleb Kosteiko
  */
-@RunWith(SpringRunner.class)
 public class JwtAuthenticationEntryPointTest {
     @Mock
     private HttpServletRequest request;

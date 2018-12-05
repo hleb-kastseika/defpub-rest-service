@@ -6,10 +6,8 @@ import gk.defpub.restservice.service.PublicationService;
 import gk.defpub.restservice.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.security.Principal;
 import java.util.NoSuchElementException;
@@ -29,7 +27,6 @@ import static org.mockito.MockitoAnnotations.initMocks;
  *
  * @author Gleb Kosteiko
  */
-@RunWith(SpringRunner.class)
 public class PublicationConditionsValidatorTest {
     private static final String TEST_PUB_ID = "testPubId";
     private static final String TEST_USER_NAME = "testUserName";

@@ -2,14 +2,12 @@ package gk.defpub.restservice.security;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -33,7 +31,6 @@ import static org.mockito.MockitoAnnotations.initMocks;
  *
  * @author Gleb Kosteiko
  */
-@RunWith(SpringRunner.class)
 public class JwtAuthenticationFilterTest {
     private static final String AUTH_HEADER = "Bearer testAuthHeader";
     private static final String TEST_USERNAME = "testUser";

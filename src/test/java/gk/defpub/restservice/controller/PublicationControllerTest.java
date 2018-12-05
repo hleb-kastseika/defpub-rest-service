@@ -6,10 +6,8 @@ import gk.defpub.restservice.service.PublicationService;
 import gk.defpub.restservice.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -31,7 +29,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Gleb Kosteiko
  */
-@RunWith(SpringRunner.class)
 public class PublicationControllerTest {
     private static final String TEST_USERNAME = "testUsername";
     private static final String TEST_USER_ID = "testUserId";
