@@ -6,12 +6,11 @@ import gk.defpub.restservice.model.User;
 import gk.defpub.restservice.model.UserConfig;
 import gk.defpub.restservice.repository.UserConfigRepository;
 import gk.defpub.restservice.repository.UserRepository;
-import gk.defpub.restservice.service.UserService;
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
@@ -37,6 +36,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class UserServiceImplTest {
     private static final String TEST_USER_ID = "testId";
     private static final String TEST_USERNAME = "testUser";
+    private static final String TEST_ENCRYPTED_PASSWORD = "testEncPass";
     private static final String TEST_USERNAME_2 = "testUser2";
     private static final String TEST_PASSWORD = "test password";
     private User user;
@@ -48,13 +48,15 @@ public class UserServiceImplTest {
     @Mock
     private UserConfigRepository userConfigRepository;
     @InjectMocks
-    private UserService userService = new UserServiceImpl();
+    private UserServiceImpl userService = new UserServiceImpl();
 
     @Before
     public void setUp() {
         initMocks(this);
         user = new User();
         user.setUsername(TEST_USERNAME);
+        user.setEncryptedPassword(TEST_ENCRYPTED_PASSWORD);
+        user.setRole(Role.ADMIN);
     }
 
     @Test
@@ -62,7 +64,7 @@ public class UserServiceImplTest {
         when(userRepository.findByUsername(user.getUsername())).thenReturn(user);
 
         User foundUser = userService.findOne(TEST_USERNAME);
-        Assertions.assertThat(foundUser.getUsername()).isEqualTo(TEST_USERNAME);
+        assertThat(foundUser.getUsername()).isEqualTo(TEST_USERNAME);
         verify(userRepository).findByUsername(TEST_USERNAME);
         verifyNoMoreInteractions(userRepository);
     }
@@ -112,6 +114,17 @@ public class UserServiceImplTest {
     public void testDelete() {
         userService.delete(TEST_USER_ID);
         verify(userRepository).deleteById(TEST_USER_ID);
+        verifyNoMoreInteractions(userRepository);
+    }
+
+    @Test
+    public void testLoadUserByUsername() {
+        when(userRepository.findByUsername(TEST_USERNAME)).thenReturn(user);
+
+        UserDetails userDetails = userService.loadUserByUsername(TEST_USERNAME);
+        assertThat(userDetails).isNotNull();
+
+        verify(userRepository).findByUsername(TEST_USERNAME);
         verifyNoMoreInteractions(userRepository);
     }
 }
