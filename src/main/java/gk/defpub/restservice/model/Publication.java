@@ -30,7 +30,7 @@ public class Publication {
     private String userId;
     @Column
     @NotBlank
-    @Size (min = 1, max = 280)
+    @Size(min = 1, max = 280)
     private String message;
 
     public String getId() {

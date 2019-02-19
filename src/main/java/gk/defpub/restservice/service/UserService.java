@@ -16,8 +16,12 @@ import java.util.List;
 public interface UserService {
 
     User save(LoginUser user);
+
     List<User> findAll();
+
     void delete(String id);
+
     User findOne(String username);
+
     User findById(String id);
 }
