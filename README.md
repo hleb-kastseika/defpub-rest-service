@@ -4,7 +4,7 @@
 # DefPub REST Service
 
 ## Requirements:
-- Java 12 or higher
+- Java 11 or higher
 - Maven 3.3 or higher
 
 ## How to build and to run:
