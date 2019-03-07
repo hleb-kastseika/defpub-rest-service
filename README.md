@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/defpub/defpub-rest-service.svg?branch=master)](https://travis-ci.org/defpub/defpub-rest-service)
+[![Run Status](https://api.shippable.com/projects/5c802246867d9e0700f9e2eb/badge?branch=master)]()
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 # DefPub REST Service
