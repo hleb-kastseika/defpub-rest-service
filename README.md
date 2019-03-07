@@ -1,4 +1,4 @@
-[![Run Status](https://api.shippable.com/projects/5c802246867d9e0700f9e2eb/badge?branch=master)]()
+[![Run Status](https://api.shippable.com/projects/5c802246867d9e0700f9e2eb/badge?branch=master)](https://app.shippable.com/github/gleb-kosteiko/defpub-rest-service/dashboard/jobs)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 # DefPub REST Service

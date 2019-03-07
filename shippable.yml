@@ -7,3 +7,12 @@ build:
     - mkdir -p shippable/codecoverage
     - mvn clean package
     - cp -r target shippable/codecoverage
+
+integrations:
+  notifications:
+    - integrationName: email
+      type: email
+      recipients:
+        - gleb.kosteiko@gmail.com
+      on_success: never
+      on_failure: always
