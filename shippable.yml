@@ -6,4 +6,4 @@ build:
   ci:
     - mkdir -p shippable/codecoverage
     - mvn clean package
-  - cp -r target shippable/codecoverage
+    - cp -r target shippable/codecoverage
