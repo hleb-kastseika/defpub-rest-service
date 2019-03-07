@@ -1,0 +1,9 @@
+language: java
+
+jdk: openjdk12
+
+build:
+  ci:
+    - mkdir -p shippable/codecoverage
+    - mvn clean package
+  - cp -r target shippable/codecoverage
