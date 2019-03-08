@@ -3,6 +3,11 @@ language: java
 jdk: openjdk11
 
 build:
+  cache: true
+  cache_dir_list:
+    - ~/.m2
+
+build:
   ci:
     - mkdir -p shippable/codecoverage
     - mvn clean package
