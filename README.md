@@ -19,4 +19,17 @@ spring.datasource.password=
 mvn clean package
 mvn spring-boot:run
 ```
-- open Swagger documentation page in the browser: http://localhost:8080/api/swagger-ui.html
+
+## How to build and to run with Docker:
+- build app with Maven as described in steps above
+- build Docker image
+```
+docker build -t defpub-rest-service .
+```
+- run Docker container
+```
+docker run -p 8080:8080 defpub-rest-service
+```
+
+## Useful links:
+- Swagger documentation: http://localhost:8080/api/swagger-ui.html
