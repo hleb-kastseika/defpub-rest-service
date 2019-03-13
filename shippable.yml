@@ -10,6 +10,7 @@ build:
     - mkdir -p shippable/codecoverage
     - mvn clean package
     - cp -r target shippable/codecoverage
+    - docker build -t defpub-rest-service .
 
 integrations:
   notifications:
