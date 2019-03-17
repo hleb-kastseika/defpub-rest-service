@@ -6,6 +6,7 @@
 ## Requirements:
 - Java 11 or higher
 - Maven 3.3 or higher
+- Docker
 
 ## How to build and to run:
 - to run the app with embeded H2DB just put these properties to 'application.properties' file in app's resources folder:
