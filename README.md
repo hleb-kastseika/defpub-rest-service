@@ -1,4 +1,5 @@
 [![Run Status](https://api.shippable.com/projects/5c802246867d9e0700f9e2eb/badge?branch=master)](https://app.shippable.com/github/gleb-kosteiko/defpub-rest-service/dashboard/jobs)
+[![Codeship Status for gleb-kosteiko/defpub-rest-service](https://app.codeship.com/projects/5635d3a0-7006-0137-ec33-2a55e35af3d3/status?branch=master)](https://app.codeship.com/projects/347829)
 [![Coverage Badge](https://api.shippable.com/projects/5c802246867d9e0700f9e2eb/coverageBadge?branch=master)]()
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
