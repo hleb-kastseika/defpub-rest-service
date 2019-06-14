@@ -1,5 +1,5 @@
 [![Run Status](https://api.shippable.com/projects/5c802246867d9e0700f9e2eb/badge?branch=master)](https://app.shippable.com/github/gleb-kosteiko/defpub-rest-service/dashboard/jobs)
-[![Coverage Badge](https://api.shippable.com/projects/5c802246867d9e0700f9e2eb/coverageBadge?branch=master)]()
+[![Coverage Badge](https://api.shippable.com/projects/5c802246867d9e0700f9e2eb/coverageBadge?branch=master)](https://app.shippable.com/github/gleb-kosteiko/defpub-rest-service/dashboard/insights)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 # DefPub REST Service
